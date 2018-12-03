@@ -10,9 +10,11 @@ import jsonmap.WeatherJson;
 
 public class Main {
 
+	static String url = "http://api.openweathermap.org/data/2.5/weather?q=leipzig,de&units=metric&APPID=b1ed965978e17dbe12f1021c7f65db57";
+
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String url = "http://api.openweathermap.org/data/2.5/weather?q=leipzig,de&units=metric&APPID=b1ed965978e17dbe12f1021c7f65db57";
 		String output = null;
 		DownloadJson downloadJson = new DownloadJson(url);
 
@@ -34,6 +36,10 @@ public class Main {
 			e.printStackTrace();
 		}
 		System.out.println(weatherJson.getMain().getTemp());
+		
+		Database database = new Database();
+		database.checkDatabaseClass();
+		database.connectToDatabase();
 	}
 
 }
