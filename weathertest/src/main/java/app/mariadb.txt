@@ -1,0 +1,52 @@
+apt install mysql-server mysql-client
+
+root@debiandev:/home/seb# mariadb
+
+CREATE DATABASE weather;
+USE weather;
+
+CREATE TABLE IF NOT EXISTS weathertest (
+  number INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+  time DATETIME NOT NULL, 
+  temperature INT,
+  description VARCHAR(30)
+);
+
+CREATE USER 'dbtest' IDENTIFIED BY 'dbtest';
+GRANT USAGE ON *.* TO 'dbtest'@'192.168.178.%' IDENTIFIED BY 'dbtest';
+GRANT ALL privileges ON `weather`.* TO 'dbtest'@'192.168.178.%';
+
+FLUSH PRIVILEGES;
+
+show grants;
+
+
+## insert
+use weather;
+INSERT INTO weathertest (time,temperature,description) values ('2018-12-03 01:45:31', 9, 'Clouds');
+
+select * from weathertest;
+
+
+
+######
+
+SHOW TABLES;
++-------------------+
+| Tables_in_weather |
++-------------------+
+| weathertest       |
++-------------------+
+1 row in set (0.00 sec)
+
+describe weathertest;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| number      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| time        | datetime    | NO   |     | NULL    |                |
+| temperature | int(11)     | YES  |     | NULL    |                |
+| description | varchar(30) | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
