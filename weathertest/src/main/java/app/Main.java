@@ -36,10 +36,13 @@ public class Main {
 			e.printStackTrace();
 		}
 		System.out.println(weatherJson.getMain().getTemp());
+		System.out.println(weatherJson.getWeather().get(0).getDescription());
 		
 		Database database = new Database();
 		database.checkDatabaseClass();
 		database.connectToDatabase();
+		database.writeToDatabase(weatherJson);
+		database.readFromDatabase();
 	}
 
 }
