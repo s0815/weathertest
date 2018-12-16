@@ -47,9 +47,8 @@ public class Database {
 	
 	public void writeToDatabase(WeatherJson wj) {
 		System.out.println(getDate());
-		String sqlInsert = "INSERT INTO "+dbTable
-					+"(time,temperature,description) "		
-					+" VALUES(?,?,?)";
+		String sqlInsert = "INSERT INTO "
+					+ dbTable + "(time,temperature,description) VALUES(?,?,?)";
 		
 		try {
 			dbpstatement=dbconnect.prepareStatement(sqlInsert);
